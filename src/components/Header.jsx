@@ -49,8 +49,8 @@ const Header = (props) => {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <>
-      <AppBar component="nav">
+    <React.Fragment>
+      <AppBar position="fixed" component="nav">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -100,7 +100,8 @@ const Header = (props) => {
           {drawer}
         </Drawer>
       </Box>
-    </>
+      <Toolbar />
+    </React.Fragment>
   );
 };
 
