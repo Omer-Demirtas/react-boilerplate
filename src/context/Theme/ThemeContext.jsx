@@ -1,6 +1,6 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 import { createContext, useMemo, useState } from "react";
-import { darkTheme, lightTheme } from "../../screens/main/themes";
+import { darkTheme, lightTheme } from "./themes";
 
 export const ThemeContext = createContext({
   mode: "light",
@@ -18,7 +18,7 @@ export const ThemeModeProvider = ({ children }) => {
   );
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ toggleTheme }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   );
