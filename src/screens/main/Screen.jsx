@@ -1,21 +1,13 @@
-import { ThemeProvider } from "@emotion/react";
+import React from "react";
 import { Button, createTheme } from "@mui/material";
-import { lightBlue, orange } from "@mui/material/colors";
-
-const theme = createTheme({
-  palette: {
-    primary: orange,
-  },
-});
+import { ThemeModeProvider } from "../../context/Theme/ThemeContext";
+import Header from "../../components/Header";
 
 const Main = () => {
   return (
-    <ThemeProvider theme={theme}>
-      ASD
-      <Button variant="outlined" color="primary">
-        ASD
-      </Button>
-    </ThemeProvider>
+    <ThemeModeProvider>
+      <Header />
+    </ThemeModeProvider>
   );
 };
 
