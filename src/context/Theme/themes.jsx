@@ -1,9 +1,9 @@
-import { lightBlue, orange, red } from "@mui/material/colors";
+import { blue, lightBlue, orange, red } from "@mui/material/colors";
 
 export const lightTheme = {
   palette: {
     mode: "light",
-    primary: red,
+    primary: blue,
   },
 };
 
