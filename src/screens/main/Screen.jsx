@@ -1,21 +1,25 @@
-import { ThemeProvider } from "@emotion/react";
-import { Button, createTheme } from "@mui/material";
-import { lightBlue, orange } from "@mui/material/colors";
-
-const theme = createTheme({
-  palette: {
-    primary: orange,
-  },
-});
+import React from "react";
+import { Button, createTheme, CssBaseline, Stack } from "@mui/material";
+import { ThemeModeProvider } from "../../context/Theme/ThemeContext";
+import Header from "components/Header";
+import BasicCard from "./BasicCard";
 
 const Main = () => {
   return (
-    <ThemeProvider theme={theme}>
-      ASD
-      <Button variant="outlined" color="primary">
-        ASD
-      </Button>
-    </ThemeProvider>
+    <ThemeModeProvider>
+      <CssBaseline />
+      <Header />
+      <Stack
+        sx={{
+          bgcolor: "secondary.main",
+        }}
+      >
+        <Button variant="outlined" color="primary">
+          {process.env.REACT_APP_KEY}
+        </Button>
+        <BasicCard />
+      </Stack>
+    </ThemeModeProvider>
   );
 };
 
