@@ -14,5 +14,13 @@ sx={{
 }}
 ```
 
-### Importing a React component from src path
+## Importing a React component from src path
+
 to make it, we have to create a file called ```jsconfig.json``` and fill that.
+
+## .env file
+
+This file can be used to config some property in application and define some variables.
+Defining variable
+```REACT_APP_KEY='EXAMPLE_KEY'``` 
+Variable name must start with ```REACT_APP_``` tag.
