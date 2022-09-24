@@ -26,3 +26,5 @@ Defining variable
 Variable name must start with ```REACT_APP_``` tag.
 
 ## Router | React-Router-Dom
+
+See the notss about [`Routing`](/notes/Router.md).
