@@ -13,6 +13,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useThemeContext } from "../context/Theme/useThemeContext";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact"];
@@ -70,7 +71,12 @@ const Header = (props) => {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
+              <Button
+                component={Link}
+                to={item}
+                key={item}
+                sx={{ color: "#fff" }}
+              >
                 {item}
               </Button>
             ))}
