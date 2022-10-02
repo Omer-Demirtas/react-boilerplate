@@ -24,3 +24,7 @@ This file can be used to config some property in application and define some var
 Defining variable
 ```REACT_APP_KEY='EXAMPLE_KEY'``` 
 Variable name must start with ```REACT_APP_``` tag.
+
+## Router | React-Router-Dom
+
+See the notss about [`Routing`](/notes/Router.md).
