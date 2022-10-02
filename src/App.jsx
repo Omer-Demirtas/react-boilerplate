@@ -6,6 +6,8 @@ import NotFound from "pages/NotFound";
 import Profile from "pages/Profile";
 import PrivateRoute from "components/PrivateRoute";
 import { AuthProvider } from "context/Auth/AuthContext";
+import AuthLayout from "pages/Auth/Layout";
+import Login from "pages/Auth/Login";
 
 const { CssBaseline } = require("@mui/material");
 const { ThemeModeProvider } = require("context/Theme/ThemeContext");
@@ -29,6 +31,9 @@ const App = () => {
                 element={<PrivateRoute><Profile /></PrivateRoute>}
               />
               <Route path="*" element={<NotFound />} />
+            </Route>
+            <Route path="/auth" element={<AuthLayout />}>
+              <Route path="login" element={<Login />} />
             </Route>
           </Routes>
         </BrowserRouter>
