@@ -14,6 +14,7 @@ export const Routes =
     {
         path: "/",
         element: <AppLayout />,
+        auth: true,
         children: [
             {
                 index: true,
@@ -35,7 +36,7 @@ export const Routes =
             },
             {
                 path: "profile",
-                element: <PrivateRoute><Profile /></PrivateRoute>
+                element: <Profile />
             },
             {
                 path: "*",
@@ -54,3 +55,20 @@ export const Routes =
         ]
     }
 ];
+
+const routesMapper = (routes) => 
+{
+    return routes.map(route => {
+        if(route.auth)
+        {
+            route.element = <PrivateRoute>{route.element}</PrivateRoute>
+        }
+        if(route.children)
+        {
+            route.children = routesMapper(route.children);
+        }
+        return route;
+    });
+}
+
+routesMapper(Routes);
