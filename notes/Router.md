@@ -46,3 +46,16 @@ Sayfalarda url ile geçirilen parametreleri almak için kullandığımız hook. 
 ### Navigate Component and useNavigate();
 Her ikiside uygulama içinde path değiştirmek için kullanılıyor. 
 Component olarak kullanımı genel olarak PrivateRoutes da kullanıldığı gibi bir JSX elementi dönülmesi gerektiği zaman, Hook oalrak ise bir fonksiyon içinde kullanılması gerektiği zaman kullanılabilir. 
+
+### Use Routes 
+Component olarak yazdığımız Route yapısını JSON fromatında yazmamızı sağlar. 
+```
+[
+    {
+        path: "/",
+        element: <Layout />
+        children: [{...}],
+    }
+]
+```
+şeklinde bir obje oluşturarak kullanılır.
