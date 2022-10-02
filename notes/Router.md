@@ -42,3 +42,7 @@ Her nested sayfa bir Layout içermeli. Bu component ```<Outlet />``` o sayfada i
 ### Use Params 
 Sayfalarda url ile geçirilen parametreleri almak için kullandığımız hook. Routeda ```/book/:id``` şeklinde tanımlanır. 
 ```const { id } = useParams();``` Şeklinde direkt olarak pathde tanımlanan değişken isminde alınabilir.  
+
+### Navigate Component and useNavigate();
+Her ikiside uygulama içinde path değiştirmek için kullanılıyor. 
+Component olarak kullanımı genel olarak PrivateRoutes da kullanıldığı gibi bir JSX elementi dönülmesi gerektiği zaman, Hook oalrak ise bir fonksiyon içinde kullanılması gerektiği zaman kullanılabilir. 
