@@ -28,3 +28,17 @@ O pathe default Layout harici bir component render edilmek istenirse. Örneğin 
 ```
 Şeklinde index props u eklenerek yapılabilir.
 
+### Generic Page Template
+
+```src/pages``` altında içerisinden birden fazla sayfa barındıran yani nested routes düzeni:
+
+```src/pages/book```
+* Layout
+* Books
+* BookDetails
+
+Her nested sayfa bir Layout içermeli. Bu component ```<Outlet />``` o sayfada içermeli ve altındaki her routes da görünmesini istenilen componentleri barındırmalı. Örneğin Hedaerın tüm sayfalarda görünmesi için tüm uygulamayı / path i ile sarmalladık ve bunun Layoutunda Header render ettik.
+
+### Use Params 
+Sayfalarda url ile geçirilen parametreleri almak için kullandığımız hook. Routeda ```/book/:id``` şeklinde tanımlanır. 
+```const { id } = useParams();``` Şeklinde direkt olarak pathde tanımlanan değişken isminde alınabilir.  
