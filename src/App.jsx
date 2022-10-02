@@ -1,4 +1,8 @@
-import Layout from "routes/Layout";
+import BookLayout from "pages/Book";
+import BookDetails from "pages/Book/BookDetails";
+import Books from "pages/Book/Books";
+import AppLayout from "pages/Layout";
+import NotFound from "pages/NotFound";
 
 const { CssBaseline } = require("@mui/material");
 const { ThemeModeProvider } = require("context/Theme/ThemeContext");
@@ -10,22 +14,13 @@ const App = () => {
       <CssBaseline />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="home" element={<Home />} />
-            <Route
-              path="*"
-              element={
-                <div
-                  style={{
-                    height: "100%",
-                    textAlign: "center",
-                    marginTop: "15%",
-                  }}
-                >
-                  <h1 style={{ fontSize: 96 }}>Not Found</h1>
-                </div>
-              }
-            />
+          <Route path="/" element={<AppLayout />}>
+            <Route index element={<Home />} />
+            <Route path="book" element={<BookLayout />}>
+              <Route index element={<Books />} />
+              <Route path="details/:id" element={<BookDetails />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
