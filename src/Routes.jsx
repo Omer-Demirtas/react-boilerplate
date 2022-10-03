@@ -15,6 +15,7 @@ export const Routes =
         path: "/",
         element: <AppLayout />,
         auth: true,
+        roles: ["ADMIN"],
         children: [
             {
                 index: true,
@@ -38,10 +39,6 @@ export const Routes =
                 path: "profile",
                 element: <Profile />
             },
-            {
-                path: "*",
-                element: <NotFound />
-            }
         ],
     },
     {
@@ -53,6 +50,10 @@ export const Routes =
                 element: <Login />,
             }
         ]
+    },
+    {
+        path: "*",
+        element: <NotFound />
     }
 ];
 
@@ -61,7 +62,9 @@ const routesMapper = (routes) =>
     return routes.map(route => {
         if(route.auth)
         {
-            route.element = <PrivateRoute>{route.element}</PrivateRoute>
+            route.element = (
+                <PrivateRoute roles={route.roles || undefined}>{route.element}</PrivateRoute>
+            )
         }
         if(route.children)
         {
