@@ -74,7 +74,7 @@ const Header = (props) => {
               <Button
                 component={Link}
                 to={item.url}
-                key={item}
+                key={item.title}
                 sx={{ color: "#fff" }}
               >
                 {item.title}
