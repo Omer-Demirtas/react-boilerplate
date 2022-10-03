@@ -16,7 +16,7 @@ import { useThemeContext } from "../context/Theme/useThemeContext";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
+const navItems = [{title: "Home", url: "/"}, {title: "Books", url: "/book"}, {title: "Profile", url: "/profile"}];
 
 const Header = (props) => {
   const { window } = props;
@@ -36,9 +36,9 @@ const Header = (props) => {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.title} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+              <ListItemText primary={item.title} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -73,11 +73,11 @@ const Header = (props) => {
             {navItems.map((item) => (
               <Button
                 component={Link}
-                to={item}
+                to={item.url}
                 key={item}
                 sx={{ color: "#fff" }}
               >
-                {item}
+                {item.title}
               </Button>
             ))}
             <Button onClick={toggleTheme} sx={{ color: "#fff" }}>
