@@ -3,6 +3,8 @@
 ## Contents
 
 * Theme 
+* [Router](/notes/Router.md)
+* Hooks 
 
 ## Theming with MUI
 Add ```<CssBaseline />``` under ```<ThemeProvider  />``` to change app background with light | dark mode
