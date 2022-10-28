@@ -1,18 +1,23 @@
 import { Button } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const HookSamples = ({ initCount, handleIncrease, ...props }) => {
   const [counter, setCounter] = useState(initCount);
   const [hour, setHour] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const didMount = useRef(false);
 
   useEffect(() => {
     console.log("Component mounted");
+    setLoading(true);
     setTimeout(() => {
       console.log("Hallo");
+      setLoading(false);
     }, 3000);
 
     return () => {
       console.log("finish");
+      didMount.current = false;
     };
   }, []);
 
@@ -25,16 +30,24 @@ const HookSamples = ({ initCount, handleIncrease, ...props }) => {
   }, [initCount]);
 
   useEffect(() => {
-    console.log(`Counter : ${counter}`);
+    if (didMount.current) {
+      console.log(`Counter : ${counter}`);
+    } else {
+      didMount.current = true;
+    }
   }, [counter]);
 
   useEffect(() => {
-    console.log(`Hour : ${hour}`);
+    if (didMount.current) {
+      console.log(`hour : ${hour}`);
+    } else {
+      didMount.current = true;
+    }
   }, [hour]);
 
-  console.log("RENDER HOOK");
   return (
     <div>
+      <h1>{loading ? "Loading" : null}</h1>
       Counter {counter} hour {hour}
       <Button onClick={() => setCounter(counter + 1)}>increase Counter</Button>
       <Button onClick={() => setHour(hour + 1)}>increase Hour</Button>

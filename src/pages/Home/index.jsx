@@ -6,8 +6,6 @@ const Home = () => {
   const [state, setState] = useState(1);
   const handleIncrease = () => setState(state + 1);
 
-  console.log("RENDER HOME");
-
   return (
     <div style={{ textAlign: "center" }}>
       <div>
