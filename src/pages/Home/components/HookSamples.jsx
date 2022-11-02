@@ -1,7 +1,9 @@
 import { Button } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
+import { useLocalStorage } from "utils/hooks/useLocalStorage";
 
 const HookSamples = ({ initCount, handleIncrease, ...props }) => {
+  const [user, setUser] = useLocalStorage("user");
   const [counter, setCounter] = useState(initCount);
   const [hour, setHour] = useState(0);
   const [loading, setLoading] = useState(false);
