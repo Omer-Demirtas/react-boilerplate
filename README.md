@@ -7,7 +7,6 @@
 * Hooks
 * State Management
 * Styling
-* 
 
 ## Theming with MUI
 Add ```<CssBaseline />``` under ```<ThemeProvider  />``` to change app background with light | dark mode
