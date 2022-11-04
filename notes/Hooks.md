@@ -16,3 +16,8 @@ export const useThemeContext = () => {
   return useContext(ThemeContext);
 };
 ```
+
+## useCallback
+useCallback is used to memoize functions,
+```
+```

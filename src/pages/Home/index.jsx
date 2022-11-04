@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
 import HookSamples from "./components/HookSamples";
+import HookSample2 from "./components/HooksSample2";
 
 const Home = () => {
   const [state, setState] = useState(1);
@@ -9,9 +10,8 @@ const Home = () => {
   return (
     <div style={{ textAlign: "center" }}>
       <div>
-        <h1>Home Page</h1>
-        <HookSamples initCount={state} handleIncrease={handleIncrease} />
-        <Button onClick={handleIncrease}>State chnage</Button>
+        {/* <HookSamples initCount={state} handleIncrease={handleIncrease} /> */}
+        <HookSample2 />
       </div>
     </div>
   );
