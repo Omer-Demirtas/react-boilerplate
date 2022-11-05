@@ -4,7 +4,6 @@ const BookLayout = () =>
 {
     return (
         <>
-        Book Layout
             <Outlet />
         </>
     );
