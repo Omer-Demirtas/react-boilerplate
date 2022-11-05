@@ -13,13 +13,21 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useThemeContext } from "../context/Theme/useThemeContext";
 import { Link } from "react-router-dom";
+import { deepOrange } from "@mui/material/colors";
+import { Avatar, Badge } from "@mui/material";
+import { useNotifyStore } from "stores/NotifyStore";
 
 const drawerWidth = 240;
-const navItems = [{title: "Home", url: "/"}, {title: "Books", url: "/book"}, {title: "Profile", url: "/profile"}];
+const navItems = [
+  { title: "Home", url: "/" },
+  { title: "Books", url: "/book" },
+  { title: "Profile", url: "/profile" },
+];
 
 const Header = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const count = useNotifyStore(s => s.count);
 
   const { toggleTheme } = useThemeContext();
 
@@ -82,6 +90,9 @@ const Header = (props) => {
             <Button onClick={toggleTheme} sx={{ color: "#fff" }}>
               Toggle Theme
             </Button>
+            <Badge badgeContent={count} color="secondary">
+              <Avatar sx={{ bgcolor: deepOrange[500], width: 35, height: 35 }}>N</Avatar>
+            </Badge>
           </Box>
         </Toolbar>
       </AppBar>

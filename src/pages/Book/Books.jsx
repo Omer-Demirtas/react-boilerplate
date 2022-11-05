@@ -4,23 +4,33 @@ import { useBookStore } from "stores/BookStores";
 const bookSelector = (state) => state.books;
 
 const Books = () => {
-  const addBook = useBookStore(s => s.addBook);
-  const books = useBookStore(s => s.books);
-  console.log("Book Render");
-  
+  console.log("Book  Render");
+
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "end", padding: 8 }}>
-        {books.length}
-        <button
-          onClick={() =>
-            addBook({ name: "asd", section: "asd" })
-          }
-        >
-          ADD new one
-        </button>
-      </div>
+      <Actions />
       <BookList />
+      <Comments />
+    </div>
+  );
+};
+
+const Actions = () => {
+  const count = useBookStore((s) => s.count);
+  const inc = useBookStore((s) => s.inc);
+
+  const addBook = useBookStore((s) => s.addBook);
+  const getComments = useBookStore((s) => s.getCommentsByBookId);
+
+  console.log("Actions Render");
+
+  return (
+    <div style={{ display: "flex", justifyContent: "end", padding: 8, gap: 8 }}>
+      <button onClick={() => inc()}>Inc {count}</button>
+      <button onClick={() => addBook({ name: "asd", section: "asd" })}>
+        ADD new one
+      </button>
+      <button onClick={() => getComments(1)}>Get Comments</button>
     </div>
   );
 };
@@ -40,6 +50,27 @@ const BookList = () => {
     >
       {books.map((b) => (
         <Book key={b.id} book={b} />
+      ))}
+    </div>
+  );
+};
+
+const Comments = () => {
+  const comments = useBookStore((state) => state.comments);
+
+  console.log("Comments Render");
+
+  return (
+    <div
+      style={{
+        margin: 16,
+      }}
+    >
+      {comments.splice(0, 10).map((c) => (
+        <div key={c.id}>
+          <h5>{c.name}</h5>
+          <h6>{c.body}</h6>
+        </div>
       ))}
     </div>
   );

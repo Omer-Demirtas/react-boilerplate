@@ -4,8 +4,8 @@
 
 * Theme 
 * [Router](/notes/Router.md)
-* Hooks
-* State Management
+* [Hooks](/notes/Hooks.md)
+* [State Management | Zustand](/notes/StateManagement.md)
 * Styling
 
 ## Theming with MUI
