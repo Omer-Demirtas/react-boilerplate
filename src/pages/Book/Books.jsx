@@ -4,23 +4,33 @@ import { useBookStore } from "stores/BookStores";
 const bookSelector = (state) => state.books;
 
 const Books = () => {
-  const addBook = useBookStore((s) => s.addBook);
-  const getComments = useBookStore((s) => s.getCommentsByBookId);
-
   console.log("Book  Render");
 
   return (
     <div>
-      <div
-        style={{ display: "flex", justifyContent: "end", padding: 8, gap: 8 }}
-      >
-        <button onClick={() => addBook({ name: "asd", section: "asd" })}>
-          ADD new one
-        </button>
-        <button onClick={() => getComments(1)}>Get Comments</button>
-      </div>
+      <Actions />
       <BookList />
       <Comments />
+    </div>
+  );
+};
+
+const Actions = () => {
+  const count = useBookStore((s) => s.count);
+  const inc = useBookStore((s) => s.inc);
+
+  const addBook = useBookStore((s) => s.addBook);
+  const getComments = useBookStore((s) => s.getCommentsByBookId);
+
+  console.log("Actions Render");
+
+  return (
+    <div style={{ display: "flex", justifyContent: "end", padding: 8, gap: 8 }}>
+      <button onClick={() => inc()}>Inc {count}</button>
+      <button onClick={() => addBook({ name: "asd", section: "asd" })}>
+        ADD new one
+      </button>
+      <button onClick={() => getComments(1)}>Get Comments</button>
     </div>
   );
 };
