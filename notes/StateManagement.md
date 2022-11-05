@@ -71,3 +71,18 @@ const useBookStore = create((set, get) => ({
 
 }));
 ```
+
+using store method from other method. 
+
+Store data can use with .getState().[method | field];
+
+```
+addBook: (book) => {
+  ✅ const notify = useNotifyStore.getState().inc();
+  
+  console.log({ notify });
+  set((state) => ({
+    books: [...state.books, { ...book, id: state.books.length + 1}],
+  }));
+}
+```
