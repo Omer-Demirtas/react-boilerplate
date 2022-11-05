@@ -42,3 +42,32 @@ You should use it lile;
 ```
 const addBook = useBookStore(s => (s.addBook));
 ``` 
+
+Async
+
+There is no any thing to do diffrent from normal function. 
+```
+getComments: async () => 
+{
+  const response = await axios.get("https://jsonplaceholder.typicode.com/comments");
+  set({comments: response.data})
+},
+```
+
+> Component spliting is so importent for unnecessery component re-rendering.
+
+Get
+
+Get state outside of set function. 
+We need state outside of set function ```set(state => {})```
+
+```
+const useBookStore = create((set, get) => ({
+  state: 1,
+  setState: () => 
+  {
+    const otherState = get().state;
+  }
+
+}));
+```
