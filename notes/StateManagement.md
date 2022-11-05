@@ -25,5 +25,5 @@ and to use this store. and to use this state.
 ```
 const books = useBookStore(s => s.books);
 ```
-> !Note when you define this code. This component only re render if when the variable is used by component.
+> when you define this code. This component only re render if when the variable is used by component.
 
