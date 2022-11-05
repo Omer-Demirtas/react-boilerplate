@@ -1,5 +1,6 @@
 import axios from "axios";
 import create from "zustand";
+import { useNotifyStore } from "./NotifyStore";
 
 export const useBookStore = create((set) => ({
   count: 0,
@@ -18,8 +19,12 @@ export const useBookStore = create((set) => ({
     const response = await axios.get("https://jsonplaceholder.typicode.com/comments");
     set({comments: response.data, loading: false })
   },
-  addBook: (book) =>
+  addBook: (book) => {
+    const notify = useNotifyStore.getState().inc();
+    
+    console.log({ notify });
     set((state) => ({
       books: [...state.books, { ...book, id: state.books.length + 1}],
-    })),
+    }));
+  }
 }));
