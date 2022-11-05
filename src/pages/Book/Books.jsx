@@ -4,14 +4,13 @@ import { useBookStore } from "stores/BookStores";
 const bookSelector = (state) => state.books;
 
 const Books = () => {
-  const addBook = useBookStore(s => s.addBook);
-  const books = useBookStore(s => s.books);
+  const addBook = useBookStore(s => (s.addBook));
+  
   console.log("Book Render");
   
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "end", padding: 8 }}>
-        {books.length}
         <button
           onClick={() =>
             addBook({ name: "asd", section: "asd" })
