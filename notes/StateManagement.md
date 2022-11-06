@@ -86,3 +86,25 @@ addBook: (book) => {
   }));
 }
 ```
+
+Middleware
+
+The persist middleware enables you to store your Zustand state in a storage. (localStorage | AsyncStorage | IndexedDB ...)
+
+usage:
+
+```
+import create from 'zustand'
+import { persist } from 'zustand/middleware'
+
+export const useUserStore = create(
+  persist(
+    (set, get) => ({ ... }),
+    {
+      name: 'food-storage', // key for state.
+      getStorage: () => sessionStorage, // (optional) by default the 'localStorage' is used
+    }
+  )
+)
+```
+to use localStorage, you should remove ```getStorage``` key.
