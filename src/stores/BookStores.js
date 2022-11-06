@@ -1,4 +1,4 @@
-import axios from "axios";
+import Api from "utils/Api";
 import create from "zustand";
 import { useNotifyStore } from "./NotifyStore";
 
@@ -16,7 +16,7 @@ export const useBookStore = create((set) => ({
   getCommentsByBookId: async (bookId) => 
   {
     set({ loading: true });
-    const response = await axios.get("https://jsonplaceholder.typicode.com/comments");
+    const response = await Api.get("comments");
     set({comments: response.data, loading: false })
   },
   addBook: (book) => {
