@@ -22,7 +22,6 @@ export const useBookStore = create((set) => ({
   addBook: (book) => {
     const notify = useNotifyStore.getState().inc();
     
-    console.log({ notify });
     set((state) => ({
       books: [...state.books, { ...book, id: state.books.length + 1}],
     }));
