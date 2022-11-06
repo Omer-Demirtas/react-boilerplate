@@ -7,9 +7,13 @@
 
 ## Zustand
 
+### Install 
+
 Zustand is easy to use library for state management. 
 
 to istall it. ```npm i zustand```
+
+### Initialize and usage
 
 for the basic initialition.
 
@@ -21,10 +25,13 @@ export const useBookStore = create((set) => ({
   addBook: (book) => {...}
 }));
 ```
-and to use this store. and to use this state. 
+
+and to use this state. 
+
 ```
 const books = useBookStore(s => s.books);
 ```
+
 > when you define this code. This component only re render if when the variable is used by component.
 
 > You have to define a new variable for each part of state
@@ -43,7 +50,7 @@ You should use it lile;
 const addBook = useBookStore(s => (s.addBook));
 ``` 
 
-Async
+### Async
 
 There is no any thing to do diffrent from normal function. 
 ```
@@ -56,9 +63,7 @@ getComments: async () =>
 
 > Component spliting is so importent for unnecessery component re-rendering.
 
-Get
-
-Get state outside of set function. 
+### Get state outside of set function. 
 We need state outside of set function ```set(state => {})```
 
 ```
@@ -72,7 +77,7 @@ const useBookStore = create((set, get) => ({
 }));
 ```
 
-using store method from other method. 
+### using store method from other method. 
 
 Store data can use with .getState().[method | field];
 
@@ -87,7 +92,7 @@ addBook: (book) => {
 }
 ```
 
-Middleware
+### Middleware
 
 The persist middleware enables you to store your Zustand state in a storage. (localStorage | AsyncStorage | IndexedDB ...)
 
