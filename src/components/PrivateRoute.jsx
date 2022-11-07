@@ -1,8 +1,9 @@
-import { useAuth } from "context/Auth/AuthContext";
+//import { useAuth } from "context/Auth/AuthContext";
 import { Navigate } from "react-router-dom";
+import { useUserStore } from "stores/UserStore";
 
 const PrivateRoute = ({ children, roles }) => {
-  const { user } = useAuth();
+  const user = useUserStore(s => s.user);
 
   if (roles && !roles.filter((element) => user.roles.includes(element)).length )
     return <Navigate to="/notFound" />;
