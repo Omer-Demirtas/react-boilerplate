@@ -34,3 +34,28 @@ Other validation parameters:
 * maxLength
 * pattern
 * validate
+
+### Working with schema 
+
+Install yup and its resolver library;
+
+```
+npm i @hookform/resolvers
+npm i yup
+```
+
+Define Schema:
+```
+const schema = yup.object({
+  firstName: yup.string().required(),
+  age: yup.number().positive().integer().required(),
+}).required();
+```
+
+Use the Schema:
+
+```
+... = useForm({
+    resolver: yupResolver(schema)
+});
+```
