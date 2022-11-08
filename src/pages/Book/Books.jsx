@@ -106,25 +106,20 @@ const Form = () => {
 };
 
 const HookForm = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data) => console.log(data);
 
-  console.log("HOOK FORM RENDER");
+  console.log("HOOK FORM RENDER", errors);
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <div style={{ marginTop: 20 }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
-        <input defaultValue="test" {...register("example")} />
+        <input defaultValue="" {...register("username")} />
 
         {/* include validation with required or other standard HTML validation rules */}
-        <input {...register("exampleRequired", { required: true })} />
+        <input {...register("password", { required: true })} />
         {/* errors will return when field validation fails  */}
         {errors.exampleRequired && <span>This field is required</span>}
 
