@@ -1,5 +1,18 @@
+import {
+  TextField,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import { Stack } from "@mui/system";
+import { useFormik } from "formik";
+import { Controller, useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { useBookStore } from "stores/BookStores";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const bookSelector = (state) => state.books;
 
@@ -7,10 +20,148 @@ const Books = () => {
   console.log("Book  Render");
 
   return (
-    <div>
-      <Actions />
-      <BookList />
-      <Comments />
+    <div style={{ width: "100%", display: "flex" }}>
+      <div style={{ width: "70%" }}>
+        <Actions />
+        <BookList />
+        <Comments />
+      </div>
+      <div style={{ width: "30%", borderLeft: "1px solid black", padding: 8 }}>
+        <Form />
+        <HookForm />
+      </div>
+    </div>
+  );
+};
+
+const validationSchema = yup.object({
+  name: yup.string("Enter book name").required("book name is required"),
+  autor: yup.string("Enter autor name").required("autor name is required"),
+});
+
+const Form = () => {
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      autor: "",
+      age: "0",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
+  console.log("Form Render");
+
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <Stack spacing={1}>
+        <TextField
+          fullWidth
+          id="name"
+          name="name"
+          label="name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          error={formik.touched.name && Boolean(formik.errors.name)}
+          helperText={formik.touched.name && formik.errors.name}
+        />
+        <TextField
+          fullWidth
+          id="autor"
+          name="autor"
+          label="autor"
+          value={formik.values.autor}
+          onChange={formik.handleChange}
+          error={formik.touched.autor && Boolean(formik.errors.autor)}
+          helperText={formik.touched.autor && formik.errors.autor}
+        />
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            value={formik.values.age}
+            id="age"
+            name="age"
+            label="Age"
+            onChange={formik.handleChange}
+          >
+            {Array.apply(null, Array(1000))
+              .map(function (x, i) {
+                return i;
+              })
+              .map((e) => (
+                <MenuItem key={e} value={e}>
+                  {e}
+                </MenuItem>
+              ))}
+          </Select>
+        </FormControl>
+        <Button color="primary" variant="contained" fullWidth type="submit">
+          Submit
+        </Button>
+      </Stack>
+    </form>
+  );
+};
+
+const Input = ({ label, register, required }) => (
+  <>
+    <label>{label}</label>
+    <input {...register(label, { required })} />
+  </>
+);
+
+const schema = yup
+  .object({
+    username: yup.string().required(),
+    password: yup.string().required(),
+    email: yup.string().required(),
+  })
+  .required();
+
+const HookForm = () => {
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      email: "asd",
+    },
+  });
+  const onSubmit = (data) => console.log(data);
+
+  console.log("HOOK FORM RENDER", errors);
+
+  return (
+    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
+    <div style={{ marginTop: 20 }}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* register your input into the hook by invoking the "register" function */}
+        <input defaultValue="" {...register("username")} />
+        {errors.username && <span>This field is required</span>}
+
+        <Controller
+          name={"email"}
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <TextField onChange={onChange} value={value} label={"Text Value"} />
+          )}
+        />
+
+        <Input label="firstname" register={register} required />
+
+        {/* include validation with required or other standard HTML validation rules */}
+        <input {...register("password")} />
+        {/* errors will return when field validation fails  */}
+        {errors.password && <span>This field is required</span>}
+
+        <input type="submit" />
+      </form>
     </div>
   );
 };
