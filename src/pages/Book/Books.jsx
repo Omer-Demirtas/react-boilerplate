@@ -8,10 +8,11 @@ import {
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useFormik } from "formik";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { useBookStore } from "stores/BookStores";
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const bookSelector = (state) => state.books;
 
@@ -105,8 +106,33 @@ const Form = () => {
   );
 };
 
+const Input = ({ label, register, required }) => (
+  <>
+    <label>{label}</label>
+    <input {...register(label, { required })} />
+  </>
+);
+
+const schema = yup
+  .object({
+    username: yup.string().required(),
+    password: yup.string().required(),
+    email: yup.string().required(),
+  })
+  .required();
+
 const HookForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      email: "asd",
+    },
+  });
   const onSubmit = (data) => console.log(data);
 
   console.log("HOOK FORM RENDER", errors);
@@ -117,11 +143,22 @@ const HookForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
         <input defaultValue="" {...register("username")} />
+        {errors.username && <span>This field is required</span>}
+
+        <Controller
+          name={"email"}
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <TextField onChange={onChange} value={value} label={"Text Value"} />
+          )}
+        />
+
+        <Input label="firstname" register={register} required />
 
         {/* include validation with required or other standard HTML validation rules */}
-        <input {...register("password", { required: true })} />
+        <input {...register("password")} />
         {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.password && <span>This field is required</span>}
 
         <input type="submit" />
       </form>
