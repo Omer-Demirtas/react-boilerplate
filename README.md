@@ -6,6 +6,7 @@
 * [Router](/notes/Router.md)
 * [Hooks](/notes/Hooks.md)
 * [State Management | Zustand](/notes/StateManagement.md)
+* [Form | React Hook Form](/notes/Forms.md)
 * Styling
 
 ## Theming with MUI
