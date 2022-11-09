@@ -44,7 +44,7 @@ npm i @hookform/resolvers
 npm i yup
 ```
 
-Define Schema:
+### Define Schema:
 ```
 const schema = yup.object({
   firstName: yup.string().required(),
@@ -52,10 +52,35 @@ const schema = yup.object({
 }).required();
 ```
 
-Use the Schema:
+### Use the Schema:
 
 ```
 ... = useForm({
     resolver: yupResolver(schema)
 });
+```
+
+### Working with UI components. 
+
+MUI needs initial values. 
+
+```
+... = useForm({ 
+  defaultValues: {
+    email: ""
+  }
+});
+```
+
+
+
+Define Textfield for MUI
+```
+<Controller
+  name={"email"}
+  control={control}
+  render={({ field: { onChange, value } }) => (
+    <TextField onChange={onChange} value={value} label={"Email"} />
+  )}
+/>
 ```
