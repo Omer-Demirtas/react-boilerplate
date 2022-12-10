@@ -1,15 +1,13 @@
-import { useState } from "react";
-import { useUserStore } from "stores/UserStore";
+import { Button } from "@mui/material";
+import { useNotifyStore } from "stores/NotifyStore";
 
 const Home = () => {
-  const [state, setState] = useState(1);
-  const handleIncrease = () => setState(state + 1);
-  const user = useUserStore(s => s.user);
-  const setUser = useUserStore(s => s.setUser);
+  const showNotify = useNotifyStore(s => s.showNotify);
 
   return (
     <div style={{ textAlign: "center" }}>
         <h1>Wellcome!</h1>
+        <Button onClick={showNotify}>Show Notify</Button>
     </div>
   );
 };

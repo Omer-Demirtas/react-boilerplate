@@ -1,21 +1,27 @@
 import { AuthProvider } from "context/Auth/AuthContext";
 import { Routes } from "Routes";
 import { useNotifyStore } from "stores/NotifyStore";
-const { CssBaseline } = require("@mui/material");
+const { CssBaseline, Snackbar } = require("@mui/material");
 const { ThemeModeProvider } = require("context/Theme/ThemeContext");
 const { useRoutes, BrowserRouter } = require("react-router-dom");
 
 const App = () => {
   const notify = useNotifyStore((s) => s.notify);
+  const hideNotify = useNotifyStore((s) => s.hideNotify);
+
   return (
     <AuthProvider>
       <ThemeModeProvider>
         <CssBaseline />
         <BrowserRouter>
-
           <Router />
-        {notify ? <h1>There is a Notify</h1> : <h1>There is no any Notify</h1>}
-    
+          <Snackbar
+            open={notify}
+            autoHideDuration={2000}
+            
+            onClose={hideNotify}
+            message="Note archived"
+          />
         </BrowserRouter>
       </ThemeModeProvider>
     </AuthProvider>
