@@ -1,6 +1,3 @@
-import BookLayout from "pages/Book";
-import BookDetails from "pages/Book/BookDetails";
-import Books from "pages/Book/Books";
 import AppLayout from "pages/Layout";
 import NotFound from "pages/NotFound";
 import Profile from "pages/Profile";
