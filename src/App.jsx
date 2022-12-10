@@ -18,7 +18,6 @@ const App = () => {
           <Snackbar
             open={notify}
             autoHideDuration={2000}
-            
             onClose={hideNotify}
             message="Note archived"
           />

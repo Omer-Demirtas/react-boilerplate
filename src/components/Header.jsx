@@ -20,7 +20,6 @@ import { useNotifyStore } from "stores/NotifyStore";
 const drawerWidth = 240;
 const navItems = [
   { title: "Home", url: "/" },
-  { title: "Books", url: "/book" },
   { title: "Profile", url: "/profile" },
 ];
 
