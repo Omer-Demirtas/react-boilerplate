@@ -22,20 +22,6 @@ export const Routes =
                 element: <Home />
             },
             {
-                path: "book",
-                element: <BookLayout />,
-                children: [
-                    {
-                        index: true,
-                        element: <Books />
-                    },
-                    {
-                        path: "details/:id",
-                        element: <BookDetails />
-                    }
-                ]
-            },
-            {
                 path: "profile",
                 element: <Profile />
             },
